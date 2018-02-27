@@ -8,8 +8,12 @@ const reducer = (state = initialState, action) => {
       })
     case 'ADD_ITEM':
       return Object.assign({}, state, {
-        key: action.value,
-        done: false
+        items: state.items.concat({
+          id: state.items.length,
+          name: action.name,
+          done: false
+        }),
+        value: ''
       })
     default:
       return state

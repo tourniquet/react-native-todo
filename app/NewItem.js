@@ -2,7 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {
   Button,
+  Keyboard,
   TextInput,
+  TouchableWithoutFeedback,
   View
 } from 'react-native'
 
@@ -25,25 +27,26 @@ const NewItem = props => {
   const addItem = item => {
     return {
       type: 'ADD_ITEM',
-      key: item
+      name: item
     }
   }
 
   return (
-    <View>
-      <TextInput
-        autoCapitalize='none'
-        placeholder='to do...'
-        value={value}
-        onChange={value => dispatch(setValue(value))}
-      />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View>
+        <TextInput
+          autoCapitalize='none'
+          placeholder='to do...'
+          value={value}
+          onChangeText={value => dispatch(setValue(value))}
+        />
 
-      <Button
-        // disabled={value.length || false}
-        onPress={() => dispatch(addItem(value))}
-        title='Add todo'
-      />
-    </View>
+        <Button
+          onPress={() => dispatch(addItem(value))}
+          title='Add todo'
+        />
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 

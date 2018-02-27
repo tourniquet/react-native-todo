@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
+  CheckBox,
   FlatList,
-  Text
+  Text,
+  View
 } from 'react-native'
 
 const mapStateToProps = store => {
@@ -17,7 +19,18 @@ const UnorderedList = props => {
   return (
     <FlatList
       data={items}
-      renderItem={({item}) => <Text>{item.key}</Text>}
+      renderItem={({item}) => (
+        <View>
+          <Text>{item.name}</Text>
+
+          <CheckBox
+            value={item.done}
+            // onValueChange={() => sayHello()}
+          />
+        </View>
+      )}
+
+      keyExtractor={item => String(item.id)}
     />
   )
 }

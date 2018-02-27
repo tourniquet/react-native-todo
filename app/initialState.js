@@ -1,11 +1,13 @@
 const initialState = {
   items: [
     {
-      key: 'Fă şeva cu tolc!',
+      id: 0,
+      name: 'Fă şeva cu tolc!',
       done: false
     },
     {
-      key: 'Fă măcar şeva!',
+      id: 1,
+      name: 'Fă măcar şeva!',
       done: true
     }
   ],
