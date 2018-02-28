@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {
   CheckBox,
   FlatList,
+  StyleSheet,
   Text,
   View
 } from 'react-native'
@@ -14,18 +15,29 @@ const mapStateToProps = store => {
 }
 
 const UnorderedList = props => {
-  const { items } = props
+  const { dispatch, items } = props
+
+  const changeItemStatus = id => {
+    return {
+      type: 'CHANGE_STATUS',
+      id
+    }
+  }
 
   return (
     <FlatList
       data={items}
       renderItem={({item}) => (
         <View>
-          <Text>{item.name}</Text>
+          <Text
+            style={[styles.itemToBeDone, item.done && styles.itemDone]}
+          >
+            {item.name}
+          </Text>
 
           <CheckBox
             value={item.done}
-            // onValueChange={() => sayHello()}
+            onValueChange={() => dispatch(changeItemStatus(item.id))}
           />
         </View>
       )}
@@ -36,3 +48,12 @@ const UnorderedList = props => {
 }
 
 export default connect(mapStateToProps)(UnorderedList)
+
+const styles = StyleSheet.create({
+  itemToBeDone: {
+    color: 'black'
+  },
+  itemDone: {
+    color: 'gray'
+  }
+})

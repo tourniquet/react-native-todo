@@ -15,6 +15,12 @@ const reducer = (state = initialState, action) => {
         }),
         value: ''
       })
+    case 'CHANGE_STATUS':
+      return Object.assign({}, state, {
+        items: state.items.map(item =>
+          (item.id === action.id) ? { ...item, done: !item.done } : item
+        )
+      })
     default:
       return state
   }

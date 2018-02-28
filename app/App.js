@@ -22,8 +22,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <View>
-        <UnorderedList />
         <NewItem />
+        <UnorderedList />
       </View>
     </Provider>
   )
